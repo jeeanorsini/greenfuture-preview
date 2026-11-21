@@ -13,4 +13,7 @@ body { margin: 0; min-width: 320px; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible { outline: 3px solid #009e52; outline-offset: 4px; }
 ::selection { background: #bbf7d0; color: #144b27; }
-@media (prefers-reduced-motion: reduce) { html {scroll-behavior:auto;} *, *::before, *::after {animation-duration: .01ms !important; transition-duration: .01ms !important;} }
+/* The interactive preview deliberately plays motion by default. */
+@keyframes gf-motion-check { 0%, 100% { transform: scale(.72); box-shadow: 0 0 0 0 rgba(52,211,153,.45); opacity: .6; } 50% { transform: scale(1.35); box-shadow: 0 0 0 9px rgba(52,211,153,0); opacity: 1; } }
+.gf-motion-beacon { animation: gf-motion-check 1.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
