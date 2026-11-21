@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowRight, Globe2, Leaf, Zap } from 'lucide-react';
 const features = [
   { icon: Zap, title: 'Clean Energy', description: 'Reliable. Renewable. Responsible.' },
@@ -6,7 +6,7 @@ const features = [
   { icon: Globe2, title: 'Global Impact', description: 'Solutions that create change worldwide.' },
 ];
 export default function HeroLeft() {
-  const reduced = useReducedMotion();
+  const reduced = false;
   const reveal = (delay:number) => ({initial:reduced?false:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6,delay:reduced?0:delay}});
   return <div className="flex flex-col justify-center py-7 lg:py-12">
     <motion.div {...reveal(.1)}><div className="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50/70 px-4 py-2 text-[11px] font-bold tracking-[.14em] text-emerald-dark uppercase"><span className="size-2 rounded-full bg-emerald-base"/>The future is renewable</div><h1 className="max-w-[650px] font-display text-[30px] leading-[1.1] font-bold tracking-tight text-slate-900 sm:text-[42px] md:text-[52px] lg:text-[54px]">Powering today.<br/><span className="text-emerald-base">Protecting tomorrow.</span></h1></motion.div>
