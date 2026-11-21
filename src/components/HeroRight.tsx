@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowUpRight, Leaf, Wind } from 'lucide-react';
 
 const VIDEO_URL = 'https://strvid.nyc3.cdn.digitaloceanspaces.com/motionsite/hero_green_energy.mp4';
 
 export default function HeroRight() {
   const [videoError,setVideoError] = useState(false);
-  const reduced = useReducedMotion();
+  const reduced = false;
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const {scrollYProgress} = useScroll({target:containerRef,offset:['start end','end start']});
