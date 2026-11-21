@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDownRight, ArrowUpRight, Droplets, Leaf, Sun, Wind } from 'lucide-react';
 import Header from './components/Header';
 import HeroLeft from './components/HeroLeft';
@@ -12,12 +12,12 @@ const technologies = [
 ];
 
 function Reveal({children, delay=0, className=''}:{children:React.ReactNode;delay?:number;className?:string}) {
-  const reduced=useReducedMotion();
+  const reduced=false;
   return <motion.div initial={reduced?false:{opacity:0,y:64,filter:'blur(10px)'}} whileInView={{opacity:1,y:0,filter:'blur(0px)'}} viewport={{once:false,amount:.16,margin:'0px 0px -70px 0px'}} transition={{duration:.85,delay,ease:[.22,1,.36,1]}} className={className}>{children}</motion.div>;
 }
 
 export default function App() {
-  const reduced=useReducedMotion();
+  const reduced=false;
   const heroRef=useRef<HTMLElement>(null);
   const {scrollYProgress}=useScroll({target:heroRef,offset:['start start','end start']});
   const heroTranslate=useTransform(scrollYProgress,[0,1],[0,-85]);
@@ -26,6 +26,9 @@ export default function App() {
   return <div id="home" className="min-h-screen overflow-x-clip bg-white">
     <motion.div aria-hidden="true" className="fixed left-0 top-0 z-50 h-[3px] w-full origin-left bg-emerald-base" style={{scaleX:progressScale}} />
     <Header/>
+    <div aria-label="Visual motion preview active" className="pointer-events-none fixed bottom-3 left-3 z-50 flex items-center gap-2 rounded-full border border-emerald-400/50 bg-[#082b1d]/90 px-3 py-2 text-[10px] font-extrabold tracking-wider text-white shadow-xl backdrop-blur-md">
+      <span aria-hidden="true" className="gf-motion-beacon h-2.5 w-2.5 rounded-full bg-emerald-400"/>MOTION LAB V2
+    </div>
     <main>
       <section ref={heroRef} aria-label="GreenFuture introduction" className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 pb-20 pt-10 md:px-12 lg:min-h-[750px] lg:grid-cols-12 lg:gap-8 lg:pt-12">
         <motion.div style={reduced?undefined:{y:heroTranslate,opacity:heroOpacity}} className="relative z-10 lg:col-span-6"><HeroLeft/></motion.div>
